@@ -2,9 +2,13 @@
 
 ## GROUP MEMBER 1
 
-### date x
+### date 5/17/23
 
-info
+Mostly starting research on the Hill Cipher. Found research and links, trying to get raw information in the presentation.md file.
+
+**Resources Used**
+[Geeks for Geeks]https://www.geeksforgeeks.org/hill-cipher/
+
 
 ### date y
 
