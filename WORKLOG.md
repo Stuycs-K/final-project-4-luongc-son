@@ -4,7 +4,8 @@
  - Starting research on Hill Cipher, finding resources and links, getting the raw data down in the presentation file, will make it look better later (Nelson and Cyrus)
  - We expect for the research phase to last for the week
 
-
+## 5/18/2023
+ - See yesterday
 
 
 
@@ -21,5 +22,6 @@
 
 **Resources Used**  
 [Geeks for Geeks](https://www.geeksforgeeks.org/hill-cipher/)
+Hill Cipher Vulnerabilities: (https://www.businessprocessincubator.com/content/what-is-hill-cipher/#:~:text=As%20mentioned%20earlier%2C%20Hill%20Cipher%20has%20a%20proven,follows%20only%20the%20standard%20algebraic%20algorithms%20for%20solutions.)
 
 
