@@ -6,6 +6,7 @@
 
 ## 5/18/2023
  - See yesterday (Nelson and Cyrus)
+ - Made an initial plan for the lesson, will make changes later (Nelson and Cyrus)
 
 
 
