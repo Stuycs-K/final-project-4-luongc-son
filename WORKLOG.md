@@ -5,7 +5,7 @@
  - We expect for the research phase to last for the week
 
 ## 5/18/2023
- - See yesterday
+ - See yesterday (Nelson and Cyrus)
 
 
 
