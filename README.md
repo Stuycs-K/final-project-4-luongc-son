@@ -5,7 +5,7 @@
 - Our presentation will consist of:
   - A brief background on the invention of the Hill Cipher
   - A general overview of how it works using matrices to encrypt and decrypt messages
-    - A
+    - This will involve a demonstration using matrices, probably on the whiteboard 
   - Its benefits and features, as well as weaknesses of the Hill Cipher 
 - We are working to make a Java program in Processing that is able to encrypt/decrypt the Hill Cipher. (Minimum Viable Project)
 - We also want to create an Image Encryption/Decryption program in Processing that utilizes the Hill Cipher in its encryption/decryption process.
