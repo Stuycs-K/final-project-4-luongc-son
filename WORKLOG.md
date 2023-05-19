@@ -27,7 +27,7 @@
 
 
 **Resources Used**  
- - [Geeks for Geeks](https://www.geeksforgeeks.org/hill-cipher/)
+ - [Geeks for Geeks (Background Info)](https://www.geeksforgeeks.org/hill-cipher/)
  - [Hill Cipher Vulnerabilities](https://www.businessprocessincubator.com/content/what-is-hill-cipher/#:~:text=As%20mentioned%20earlier%2C%20Hill%20Cipher%20has%20a%20proven,follows%20only%20the%20standard%20algebraic%20algorithms%20for%20solutions.)
 - [Hill Cipher Advantages/Weaknesses](https://intellipaat.com/blog/what-is-hill-cipher/?US)
-
+- [Hill Cipher Encoder/Decoder for Testing](https://www.dcode.fr/hill-cipher)
