@@ -11,6 +11,7 @@
 
 ## 5/19/2023
  - Starting to write up the presentation, will refine later (Nelson and Cyrus)
+ - Discussed concerns regarding the Image Encryption, talked about how it should be executed, seems to be resolved (Nelson)
 
 
 
