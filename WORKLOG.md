@@ -12,7 +12,7 @@
 ## 5/19/2023
  - Starting to write up the presentation, will refine later (Nelson)
  - Starting to write up the ReadMe (Cyrus)
- - Discussed concerns regarding the Image Encryption, talked about how it should be executed, seems to be resolved (Nelson)
+ - Discussed concerns regarding the Image Encryption, talked about how it should be executed, seems to be resolved (Nelson and Cyrus)
 
 
 
