@@ -13,5 +13,6 @@ Initial Plan
  - Hill Cipher is a block cipher
    - encryption method that implements a deterministic algorithm with a symmetric key to encrypt a block of text
      - in this case, the deteriministic algorithm refers to the linear algebra the cipher utilizes
-   - x
- - 
+   - doesn’t need to encrypt one bit at a time like in stream ciphers
+ - Hill Cipher is digraphic in nature
+   - capable of expanding to multiply any size of letters to add more complexity and reliability for better use
