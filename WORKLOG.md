@@ -9,6 +9,9 @@
  - Made an initial plan for the lesson, will make changes later (Nelson and Cyrus)
  - Researching potential ideas for project beyond encryption/decryption- possibly use Hill Cipher for Image Encryption? (Cyrus)
 
+## 5/19/2023
+ - Starting to write up the presentation, will refine later (Nelson and Cyrus)
+
 
 
 
