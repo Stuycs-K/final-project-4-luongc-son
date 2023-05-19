@@ -10,7 +10,7 @@
  - Researching potential ideas for project beyond encryption/decryption- possibly use Hill Cipher for Image Encryption? (Cyrus)
 
 ## 5/19/2023
- - Starting to write up the presentation, will refine later (Nelson)
+ - Starting to write up the presentation, will begin with the General Notes section, will refine later (Nelson)
  - Starting to write up the ReadMe (Cyrus)
  - Discussed concerns regarding the Image Encryption, talked about how it should be executed, seems to be resolved (Nelson and Cyrus)
 
