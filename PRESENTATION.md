@@ -6,8 +6,12 @@ Initial Plan
  - demonstrate the math
  - show an example with the code (image encryption)
 
-## Notes
+## General Notes
  - Hill Cipher follows a polygraphic substitution cipher, which means there is uniform substitution across multiple levels of blocks.
  - More mathematical cipher compared to other ciphers: based on linear algebra, heavily relies on the sophisticated use of matrices
    - Mostly matrix multiplication and matrix inverses
+ - Hill Cipher is a block cipher
+   - encryption method that implements a deterministic algorithm with a symmetric key to encrypt a block of text
+     -in this case
+   - x
  - 
