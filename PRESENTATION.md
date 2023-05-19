@@ -7,7 +7,9 @@ Initial Plan
  - show an example with the code (image encryption)
 
 ## General Notes
- - Hill Cipher follows a polygraphic substitution cipher, which means there is uniform substitution across multiple levels of blocks.
+ - Invented by Lester S. Hill in 1929,
+   - it was the first polygraphic cipher in which it was practical (though barely) to operate on more than three symbols at once
+ - Hill Cipher follows a polygraphic substitution cipher, which means there is uniform substitution across multiple levels of blocks
  - More mathematical cipher compared to other ciphers: based on linear algebra, heavily relies on the sophisticated use of matrices
    - Mostly matrix multiplication and matrix inverses
  - Hill Cipher is a block cipher
