@@ -12,6 +12,6 @@ Initial Plan
    - Mostly matrix multiplication and matrix inverses
  - Hill Cipher is a block cipher
    - encryption method that implements a deterministic algorithm with a symmetric key to encrypt a block of text
-     - in this case
+     - in this case, the deteriministic algorithm refers to the linear algebra the cipher utilizes
    - x
  - 
