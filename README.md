@@ -3,7 +3,7 @@
 
 ### Project Description
 - Our presentation will consist of:
-- -
+  -
 - We are working to make a Java program in Processing that is able to encrypt/decrypt the Hill Cipher. (Minimum Viable Project)
 - We also want to create an Image Encryption/Decryption program in Processing that utilizes the Hill Cipher in its encryption/decryption process.
 
