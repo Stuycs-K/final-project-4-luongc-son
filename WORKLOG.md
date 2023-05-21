@@ -14,6 +14,8 @@
  - Starting to write up the ReadMe (Cyrus)
  - Discussed concerns regarding the Image Encryption, talked about how it should be executed, seems to be resolved (Nelson and Cyrus)
 
+## 5/21/2023
+ - Added vulnerabilities notes to presentation (Nelson)
 
 
 
