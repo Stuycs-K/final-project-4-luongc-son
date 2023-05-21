@@ -18,3 +18,6 @@ Initial Plan
    - doesn’t need to encrypt one bit at a time like in stream ciphers
  - Hill Cipher is digraphic in nature
    - capable of expanding to multiply any size of letters to add more complexity and reliability for better use
+ - Vulnerabilities: brute force attacks, known plaintext attackw
+   - Brute force attacks can be countered by having a long key and large block sizes
+   - Plaintext attacks will only work if attacker has access to both plaintext and ciphertext
