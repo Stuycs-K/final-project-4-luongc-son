@@ -17,7 +17,8 @@
 ## 5/21/2023
  - Added vulnerabilities notes to presentation (Nelson)
 
-
+## 5/22/2023
+ - Updated presentation.md file to include specifics on how the cipher works (Nelson and Cyrus)
 
 
 
