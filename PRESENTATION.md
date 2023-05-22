@@ -18,6 +18,7 @@ Initial Plan
    - doesn’t need to encrypt one bit at a time like in stream ciphers
  - Hill Cipher is digraphic in nature
    - capable of expanding to multiply any size of letters to add more complexity and reliability for better use
+ - Advantages: is immune to letter frequency analysis
  - Vulnerabilities: brute force attacks, known plaintext attackw
    - Brute force attacks can be countered by having a long key and large block sizes
    - Plaintext attacks will only work if attacker has access to both plaintext and ciphertext
@@ -25,8 +26,10 @@ Initial Plan
 ## How it Works
  - Each letter is represented by a number modulo 26 (usually 0-25)
  - To encrypt a message, each block of n letters is multiplied by an invertible n × n matrix, against modulus 26
+   - For matrix multiplication, the number of columns in the first matrix must be equal to the number of rows in the second matrix
+   - The matrix used for encryption is the cipher key, and it should be chosen randomly from the set of invertible n × n matrices (modulo 26)
+   - The text being encrypted should be written as a vector (a matrix with one column and n rows)
  - To decrypt the message, each block is multiplied by the inverse of the matrix used for encryption
- - For matrix multiplication, the number of columns in the first matrix must be equal to the number of rows in the second matrix
- - The matrix used for encryption is the cipher key, and it should be chosen randomly from the set of invertible n × n matrices (modulo 26)
- - The text being encrypted or decrypted should be written as a vector (a matrix with one column and n rows)
- - If the message is longer than n letters, break it up into matrices, each with n letters.
+   - The text being decrypted should be written as a vector (a matrix with one column and n rows)
+ - If the message is longer than n letters, break it up into matrices, each with n letters
+   - Run the same encryption or decryption process on each new matrix, and then join the results together
