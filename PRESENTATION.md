@@ -33,3 +33,5 @@ Initial Plan
    - The text being decrypted should be written as a vector (a matrix with one column and n rows)
  - If the message is longer than n letters, break it up into matrices, each with n letters
    - Run the same encryption or decryption process on each new matrix, and then join the results together
+
+## Image Encryption/Decryption
