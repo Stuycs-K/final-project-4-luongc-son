@@ -28,4 +28,4 @@ Initial Plan
  - To decrypt the message, each block is multiplied by the inverse of the matrix used for encryption
  - For matrix multiplication, the number of columns in the first matrix must be equal to the number of rows in the second matrix
  - The matrix used for encryption is the cipher key, and it should be chosen randomly from the set of invertible n × n matrices (modulo 26)
-
+ - If the message is longer than n letters, break it up into matrices, each with n letters.
