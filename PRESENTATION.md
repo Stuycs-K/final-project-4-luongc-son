@@ -21,3 +21,6 @@ Initial Plan
  - Vulnerabilities: brute force attacks, known plaintext attackw
    - Brute force attacks can be countered by having a long key and large block sizes
    - Plaintext attacks will only work if attacker has access to both plaintext and ciphertext
+
+## How it Works
+ -
