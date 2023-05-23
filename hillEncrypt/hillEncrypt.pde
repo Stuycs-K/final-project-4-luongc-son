@@ -8,6 +8,9 @@ boolean accepting = true; //determines if user input is being accepted
 void setup(){
 }
 
+void draw(){
+}
+
 void keyPressed(){
   if (keyPressed && accepting){
     char c = key;
@@ -36,6 +39,19 @@ void keyAction(char c){
       }
     }
     println("Current input: " + text);
+  }
+  //ascii A-Z 65-90 a-z 97-122
+  int nc = ((int) c);
+  if ((nc >= 97) && (nc <= 122)){
+    String s = Character.toString(c);
+    s = s.toUpperCase();
+    nc = nc - 32;
+  }
+  if ((nc >= 65) && (nc <= 90)){
+    println(c);
+  }
+  else{
+    println("This is not a valid character!");
   }
 }
 
