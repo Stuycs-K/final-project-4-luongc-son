@@ -24,7 +24,7 @@
  - Pushed starting code (Nelson)
 
 ## 5/23/2023
-- Further progress on encryption code (Nelson and Cyrus)
+- Further progress on encryption code, mostly user input (Nelson and Cyrus)
 
 
 
