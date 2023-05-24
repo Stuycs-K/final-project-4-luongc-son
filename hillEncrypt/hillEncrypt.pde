@@ -4,6 +4,7 @@ String keyy = "ACT";
 String alphabet = "ABCDEFGHIIJKLMNOPQRSTUVWXYZ";
 String text = "";
 boolean accepting = true; //determines if user input is being accepted
+String answer = "";
 
 void setup(){
 }
@@ -27,7 +28,8 @@ void keyAction(char c){
       accepting = true;
     }
     else{
-      encrypt(text);
+      answer = encrypt(text);
+      //println(text);
     }
   }
   if (c == BACKSPACE){
@@ -35,7 +37,7 @@ void keyAction(char c){
     if (text.length() >= 1){
       for (int i = 0; i < text.length() - 1; i++){
         char cc = text.charAt(i);
-        String newtext += Character.toString(cc);
+        newtext = newtext + Character.toString(cc);
         
       }
       text = newtext;
@@ -55,10 +57,17 @@ void keyAction(char c){
     text += add;
     println(text);
   }
-  else{
+  if ((c != ENTER) && (c != BACKSPACE) && (!((nc >= 65) && (nc <= 90))) 
+  && (!((nc >= 97) && (nc <= 122)))){
     println("This is not a valid character!");
   }
 }
 
-void encrypt(String text){
+String encrypt(String text){
+  String encrypted = "";
+  int state; //state is supposed to represent the size of the matrices
+  int L = text.length();
+  if ((L % 2) == 0){
+  }
+  return encrypted;
 }
