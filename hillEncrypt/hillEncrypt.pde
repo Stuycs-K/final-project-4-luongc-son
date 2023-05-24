@@ -31,12 +31,14 @@ void keyAction(char c){
     }
   }
   if (c == BACKSPACE){
+    String newtext = "";
     if (text.length() >= 1){
       for (int i = 0; i < text.length() - 1; i++){
         char cc = text.charAt(i);
-        String newtext = Character.toString(cc);
-        text = newtext;
+        String newtext += Character.toString(cc);
+        
       }
+      text = newtext;
     }
     println("Current input: " + text);
   }
