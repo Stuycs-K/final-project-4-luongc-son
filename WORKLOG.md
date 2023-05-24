@@ -27,6 +27,7 @@
 - Further progress on encryption code, mostly user input (Nelson and Cyrus)
 
 ## 5/24/2023
+ - Finishing up user input, starting on the encryption process itself (Nelson and Cyrus)
 
 
 
