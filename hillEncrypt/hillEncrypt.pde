@@ -87,6 +87,7 @@ String encrypt(String text){
     keyState = 49;
   }
   keyyValuesN = new int[keyState];
+  keyyValuesL = new char[keyState];
   for(int i = 0; i < keyState; i++){
     keyyValuesN[i] = int(random(0, 26));
     keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
