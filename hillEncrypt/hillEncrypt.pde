@@ -86,11 +86,12 @@ String encrypt(String text){
     state = 7;
     keyState = 49;
   }
+  int NM = L / state; //represents the number of matrices the secret message is split into
   keyyValuesN = new int[keyState];
   keyyValuesL = new char[keyState];
   for(int i = 0; i < keyState; i++){
     keyyValuesN[i] = int(random(0, 26));
     keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
-  }
+  } //makes the key
   return encrypted;
 }
