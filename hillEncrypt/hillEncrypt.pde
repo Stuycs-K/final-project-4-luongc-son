@@ -48,7 +48,10 @@ void keyAction(char c){
     nc = nc - 32;
   }
   if ((nc >= 65) && (nc <= 90)){
-    println(c);
+    char addc = char(nc);
+    String add = "" + addc;
+    text += add;
+    println(text);
   }
   else{
     println("This is not a valid character!");
