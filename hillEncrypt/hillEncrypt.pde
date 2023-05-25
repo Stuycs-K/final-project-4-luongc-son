@@ -3,6 +3,7 @@ import java.util.Scanner;
 String keyy = "";
 int keyyValuesN[];
 int textValuesN[]; 
+int totalValuesN[];
 char keyyValuesL[];
 String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 String text = "";
@@ -93,7 +94,8 @@ String encrypt(String text){
   keyyValuesL = new char[keyState];
   String keyL = "";
   textValuesN = new int[L];
-  for(int i = 0; i < L; ++i){
+  totalValuesN = new int[L];
+  for(int i = 0; i < L; i++){
     textValuesN[i] = (int(text.charAt(i))) - 65;
     println(textValuesN[i]);
   }
@@ -103,22 +105,35 @@ String encrypt(String text){
     keyL += alphabet.charAt(keyyValuesN[i]);
   } //makes the key
    println("Key: " + keyL);
-   // START OF ENCRYPTION
-  for(int i = 0; i < NM; ++i){
-    for(int j = 0; j < state; ++j){
-        char add;
-        int total = 0;
-        for(int k = 0; k < state; ++k){
-            println("Multiplying: ", keyyValuesN[j * state + k], textValuesN[k]);
-           total += keyyValuesN[j * state +k] * textValuesN[k]; 
-        }
-        println(total);
-        total = total % 26;
-        println(total);
-        add = char(total + 65);
-        println(add);
-        encrypted += add;
-    }
-  }
+   int keyCounter = 0; //keeps track of key's indicies
+   int messageCounter = 0; //keeps track of message's component's indicies
+   int MCD = 0; //number of matrix components done
+   int total = 0;
+  for (int i = 0; i < NM; i++){ //break up message into manageable components
+    for (int j = 0; j < state; j++){ //runs through the key's matrix
+      for (int k = 0; k < state; k++){ //runs through the message's components
+        total += keyyValuesN[keyCounter] * textValuesN[
+      } //k
+    } //j
+    keyCounter = 0;
+  } //i
+  // START OF ENCRYPTION - VERSION 1
+  //for(int i = 0; i < NM; ++i){
+  //  for(int j = 0; j < state; ++j){
+  //      char add;
+  //      int total = 0;
+  //      for(int k = 0; k < state; ++k){
+  //          println("Multiplying: ", keyyValuesN[j * state + k], textValuesN[k]);
+  //         total += keyyValuesN[j * state +k] * textValuesN[k]; 
+  //      }
+  //      println(total);
+  //      total = total % 26;
+  //      println(total);
+  //      add = char(total + 65);
+  //      println(add);
+  //      encrypted += add;
+  //  }
+  //}
+  
   return encrypted;
 }
