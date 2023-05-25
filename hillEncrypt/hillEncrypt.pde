@@ -34,6 +34,7 @@ void keyAction(char c){
     else{
       answer = encrypt(text);
       //println(text);
+      println("ENCRYPTED: " + answer);
     }
   }
   if (c == BACKSPACE){
@@ -92,7 +93,6 @@ String encrypt(String text){
   //println(NM);
   keyyValuesN = new int[keyState];
   keyyValuesL = new char[keyState];
-  String keyL = "";
   textValuesN = new int[L];
   totalValuesN = new int[L];
   for(int i = 0; i < L; i++){
@@ -102,21 +102,35 @@ String encrypt(String text){
   for(int i = 0; i < keyState; i++){
     keyyValuesN[i] = int(random(0, 26));
     keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
-    keyL += alphabet.charAt(keyyValuesN[i]);
+    keyy += alphabet.charAt(keyyValuesN[i]);
   } //makes the key
-   println("Key: " + keyL);
-   int keyCounter = 0; //keeps track of key's indicies
-   int messageCounter = 0; //keeps track of message's component's indicies
-   int MCD = 0; //number of matrix components done
-   int total = 0;
+  println("Key: " + keyy);
+  int keyCounter = 0; //keeps track of key's indicies
+  int messageCounter = 0; //keeps track of message's component's indicies
+  int MCD = 0; //number of matrix components done
+  int total = 0;
+  int totalCounter = 0;
   for (int i = 0; i < NM; i++){ //break up message into manageable components
     for (int j = 0; j < state; j++){ //runs through the key's matrix
       for (int k = 0; k < state; k++){ //runs through the message's components
-        total += keyyValuesN[keyCounter] * textValuesN[
+        total += keyyValuesN[keyCounter] * textValuesN[(MCD * state) + messageCounter];
+        keyCounter++;
+        messageCounter++;
       } //k
+      total = total % 26;
+      totalValuesN[totalCounter] = total;
+      total = 0;
+      messageCounter = messageCounter - state;
+      totalCounter++;
     } //j
     keyCounter = 0;
+    MCD++;
   } //i
+  for (int i = 0; i < L; i++){
+    char Q = alphabet.charAt(totalValuesN[i]);
+    String q = Character.toString(Q);
+    encrypted += q;
+  }
   // START OF ENCRYPTION - VERSION 1
   //for(int i = 0; i < NM; ++i){
   //  for(int j = 0; j < state; ++j){
