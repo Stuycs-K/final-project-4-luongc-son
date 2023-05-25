@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 String keyy = "";
 int keyyValuesN[];
+int textValuesN[]; 
 char keyyValuesL[];
 String alphabet = "ABCDEFGHIIJKLMNOPQRSTUVWXYZ";
 String text = "";
@@ -87,13 +88,32 @@ String encrypt(String text){
     keyState = 49;
   }
   int NM = L / state; //represents the number of matrices the secret message is split into
-  println(NM);
+  //println(NM);
   keyyValuesN = new int[keyState];
   keyyValuesL = new char[keyState];
+  String keyL = "";
+  textValuesN = new int[L];
+  for(int i = 0; i < L; ++i){
+    textValuesN[i] = (int(text.charAt(i))) - 65;
+    //println(textValuesN[i]);
+  }
   for(int i = 0; i < keyState; i++){
     keyyValuesN[i] = int(random(0, 26));
     keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
+    keyL += alphabet.charAt(keyyValuesN[i]);
   } //makes the key
-   
+   println("Key: " + keyL);
+  //for(int i = 0; i < NM; ++i){
+  //  for(int j = 0; j < state; ++j){
+  //      char add;
+  //      int total = 0;
+  //      for(int k = 0; k < state; ++k){
+  //         total += keyyValuesN[j] * textValuesN[k]; 
+  //      }
+  //      //println(total);
+  //      total = total % 26;
+  //      println(total);
+  //  }
+  //}
   return encrypted;
 }
