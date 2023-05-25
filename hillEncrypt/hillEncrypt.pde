@@ -4,7 +4,7 @@ String keyy = "";
 int keyyValuesN[];
 int textValuesN[]; 
 char keyyValuesL[];
-String alphabet = "ABCDEFGHIIJKLMNOPQRSTUVWXYZ";
+String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 String text = "";
 boolean accepting = true; //determines if user input is being accepted
 String answer = "";
@@ -95,7 +95,7 @@ String encrypt(String text){
   textValuesN = new int[L];
   for(int i = 0; i < L; ++i){
     textValuesN[i] = (int(text.charAt(i))) - 65;
-    //println(textValuesN[i]);
+    println(textValuesN[i]);
   }
   for(int i = 0; i < keyState; i++){
     keyyValuesN[i] = int(random(0, 26));
@@ -103,17 +103,22 @@ String encrypt(String text){
     keyL += alphabet.charAt(keyyValuesN[i]);
   } //makes the key
    println("Key: " + keyL);
-  //for(int i = 0; i < NM; ++i){
-  //  for(int j = 0; j < state; ++j){
-  //      char add;
-  //      int total = 0;
-  //      for(int k = 0; k < state; ++k){
-  //         total += keyyValuesN[j] * textValuesN[k]; 
-  //      }
-  //      //println(total);
-  //      total = total % 26;
-  //      println(total);
-  //  }
-  //}
+   // START OF ENCRYPTION
+  for(int i = 0; i < NM; ++i){
+    for(int j = 0; j < state; ++j){
+        char add;
+        int total = 0;
+        for(int k = 0; k < state; ++k){
+            println("Multiplying: ", keyyValuesN[j * state + k], textValuesN[k]);
+           total += keyyValuesN[j * state +k] * textValuesN[k]; 
+        }
+        println(total);
+        total = total % 26;
+        println(total);
+        add = char(total + 65);
+        println(add);
+        encrypted += add;
+    }
+  }
   return encrypted;
 }
