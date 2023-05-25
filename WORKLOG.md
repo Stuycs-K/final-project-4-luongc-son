@@ -30,7 +30,7 @@
  - Finishing up user input, starting on the encryption process itself (Nelson and Cyrus)
 
 ## 5/25/2023
--
+ - Working on encryption process, discussing how to implement it, trying to figure out algorithm (Nelson and Cyrus)
 
 
 
