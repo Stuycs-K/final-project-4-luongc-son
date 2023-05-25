@@ -31,6 +31,7 @@
 
 ## 5/25/2023
  - Working on encryption process, discussing how to implement it, trying to figure out algorithm (Nelson and Cyrus)
+ - Pushed starter code, will need to redo later (we both did it on Cyrus' computer since it would be easier) (Cyrus)
 
 
 
