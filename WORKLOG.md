@@ -37,7 +37,7 @@
 
 ## 5/26/2023
  - Fixing errors on key generation (Nelson + Cyrus)
- - Researching how to find discriminant of an n x n matrix (Cyrus)
+ - Researching how to find discriminant of an n x n matrix (Nelson + Cyrus)
 
 
 
