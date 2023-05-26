@@ -151,3 +151,7 @@ String encrypt(String text){
   
   return encrypted;
 }
+
+void genKey(){
+  
+}
