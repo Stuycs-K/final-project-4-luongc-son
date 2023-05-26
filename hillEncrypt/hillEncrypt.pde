@@ -2,12 +2,14 @@ import java.util.Scanner;
 
 String keyy = "";
 int keyyValuesN[];
+int keyyValuesNM[][];
 int textValuesN[]; 
 int totalValuesN[];
 char keyyValuesL[];
 String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 String text = "";
 boolean accepting = true; //determines if user input is being accepted
+boolean keyAccepted = false; //determines if key matrix is valid
 String answer = "";
 
 void setup(){
@@ -93,18 +95,21 @@ String encrypt(String text){
   //println(NM);
   keyyValuesN = new int[keyState];
   keyyValuesL = new char[keyState];
+  keyyValuesNM = new int[state][state];
   textValuesN = new int[L];
   totalValuesN = new int[L];
-  for(int i = 0; i < L; i++){
-    textValuesN[i] = (int(text.charAt(i))) - 65;
-    println(textValuesN[i]);
-  }
-  for(int i = 0; i < keyState; i++){
-    keyyValuesN[i] = int(random(0, 26));
-    keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
-    keyy += alphabet.charAt(keyyValuesN[i]);
-  } //makes the key
-  println("Key: " + keyy);
+//KEY
+  finalize_key(L, state, keyState, keyyValuesNM);
+  //for(int i = 0; i < L; i++){
+  //  textValuesN[i] = (int(text.charAt(i))) - 65;
+  //  println(textValuesN[i]);
+  //}
+  //for(int i = 0; i < keyState; i++){
+  //  keyyValuesN[i] = int(random(0, 26));
+  //  keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
+  //  keyy += alphabet.charAt(keyyValuesN[i]);
+  //} //makes the key    
+  //println("Key: " + keyy);
   int keyCounter = 0; //keeps track of key's indicies
   int messageCounter = 0; //keeps track of message's component's indicies
   int MCD = 0; //number of matrix components done
@@ -152,6 +157,60 @@ String encrypt(String text){
   return encrypted;
 }
 
-void genKey(){
-  
+void finalize_key(int L, int state, int keyState, int m[][]){
+  while (keyAccepted == false){
+    genKey(L, keyState);
+    double DD = getDeterminant(keyyValuesNM, state);
+    int D = (int) DD;
+    if (coprime(D, 26) == true){
+      keyAccepted = true;
+    }
+  }
+}
+
+boolean coprime(int x, int y){
+  return (gcd(x, y) == 1);
+}
+
+int gcd(int x, int y){
+  if (y == 0){
+    return x;
+  }
+  return gcd(y, x % y);
+}
+
+void genKey(int L, int keyState){
+  float s = sqrt(keyState);
+  for(int i = 0; i < L; i++){
+    textValuesN[i] = (int(text.charAt(i))) - 65;
+    println(textValuesN[i]);
+  }
+  for(int i = 0; i < keyState; i++){
+    keyyValuesN[i] = int(random(0, 26));
+    keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
+    keyy += alphabet.charAt(keyyValuesN[i]);
+  } //makes the key 
+  int KC = 0;
+  for (int i = 0; i < s; i++){
+    for (int j = 0; j < s; j++){
+      keyyValuesNM[i][j] = keyyValuesN[KC];
+      KC++;
+    }
+  }
+}
+
+double getDeterminant(int m[][], int s){
+  double D = 0;
+  if (s == 1){
+    D = m[0][0];
+  }
+  else if (s == 2){
+    D = (m[0][0] * m[1][1]) - (m[1][0] * m[0][1]);
+  }
+  else{
+    for (int j = 0; j < s; j++){
+      D += Math.pow(-1.0, 1.0 + j + 1.0) * m[0][j] * getDeterminant(m, s - 1);
+    }
+  }
+  return D;
 }
