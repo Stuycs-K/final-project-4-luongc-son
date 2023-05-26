@@ -99,17 +99,17 @@ String encrypt(String text){
   textValuesN = new int[L];
   totalValuesN = new int[L];
 //KEY
-  finalize_key(L, state, keyState, keyyValuesNM);
-  //for(int i = 0; i < L; i++){
-  //  textValuesN[i] = (int(text.charAt(i))) - 65;
-  //  println(textValuesN[i]);
-  //}
-  //for(int i = 0; i < keyState; i++){
-  //  keyyValuesN[i] = int(random(0, 26));
-  //  keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
-  //  keyy += alphabet.charAt(keyyValuesN[i]);
-  //} //makes the key    
-  //println("Key: " + keyy);
+  //finalize_key(L, state, keyState, keyyValuesNM);
+  for(int i = 0; i < L; i++){
+    textValuesN[i] = (int(text.charAt(i))) - 65;
+    println(textValuesN[i]);
+  }
+  for(int i = 0; i < keyState; i++){
+    keyyValuesN[i] = int(random(0, 26));
+    keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
+    keyy += alphabet.charAt(keyyValuesN[i]);
+  } //makes the key    
+  println("Key: " + keyy);
   int keyCounter = 0; //keeps track of key's indicies
   int messageCounter = 0; //keeps track of message's component's indicies
   int MCD = 0; //number of matrix components done
@@ -157,60 +157,62 @@ String encrypt(String text){
   return encrypted;
 }
 
-void finalize_key(int L, int state, int keyState, int m[][]){
-  while (keyAccepted == false){
-    genKey(L, keyState);
-    double DD = getDeterminant(keyyValuesNM, state);
-    int D = (int) DD;
-    if (coprime(D, 26) == true){
-      keyAccepted = true;
-    }
-  }
-}
+//void finalize_key(int L, int state, int keyState, int m[][]){
+//  while (keyAccepted == false){
+//    genKey(L, keyState);
+//    double DD = getDeterminant(m, state);
+//    int D = (int) DD;
+//    if ((coprime(D, 26) == true) && (D > 0)){
+//      keyAccepted = true;
+//    }
+//  }
+//}
 
-boolean coprime(int x, int y){
-  return (gcd(x, y) == 1);
-}
+//boolean coprime(int x, int y){
+//  return (gcd(x, y) == 1);
+//}
 
-int gcd(int x, int y){
-  if (y == 0){
-    return x;
-  }
-  return gcd(y, x % y);
-}
+//int gcd(int x, int y){
+//  if (y == 0){
+//    return x;
+//  }
+//  return gcd(y, x % y);
+//}
 
-void genKey(int L, int keyState){
-  float s = sqrt(keyState);
-  for(int i = 0; i < L; i++){
-    textValuesN[i] = (int(text.charAt(i))) - 65;
-    println(textValuesN[i]);
-  }
-  for(int i = 0; i < keyState; i++){
-    keyyValuesN[i] = int(random(0, 26));
-    keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
-    keyy += alphabet.charAt(keyyValuesN[i]);
-  } //makes the key 
-  int KC = 0;
-  for (int i = 0; i < s; i++){
-    for (int j = 0; j < s; j++){
-      keyyValuesNM[i][j] = keyyValuesN[KC];
-      KC++;
-    }
-  }
-}
+//void genKey(int L, int keyState){
+//  keyy = "";
+//  int s = (int) sqrt(keyState);
+//  for(int i = 0; i < L; i++){
+//    textValuesN[i] = (int(text.charAt(i))) - 65;
+//    //println(textValuesN[i]);
+//  }
+//  for(int i = 0; i < keyState; i++){
+//    keyyValuesN[i] = int(random(0, 26));
+//    keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
+//    keyy += alphabet.charAt(keyyValuesN[i]);
+//  } //makes the key 
+//  int KC = 0;
+//  for (int i = 0; i < s; i++){
+//    for (int j = 0; j < s; j++){
+//      keyyValuesNM[i][j] = keyyValuesN[KC];
+//      //println(keyyValuesNM[i][j]);
+//      KC++;
+//    }
+//  }
+//}
 
-double getDeterminant(int m[][], int s){
-  double D = 0;
-  if (s == 1){
-    D = m[0][0];
-  }
-  else if (s == 2){
-    D = (m[0][0] * m[1][1]) - (m[1][0] * m[0][1]);
-  }
-  else{
-    for (int j = 0; j < s; j++){
-      D += Math.pow(-1.0, 1.0 + j + 1.0) * m[0][j] * getDeterminant(m, s - 1);
-    }
-  }
-  return D;
-}
+//double getDeterminant(int m[][], int s){
+//  double D = 0;
+//  if (s == 1){
+//    D = m[0][0];
+//  }
+//  else if (s == 2){
+//    D = (m[0][0] * m[1][1]) - (m[1][0] * m[0][1]);
+//  }
+//  else{
+//    for (int j = 0; j < s; j++){
+//      D += Math.pow(-1.0, 1.0 + j + 1.0) * m[0][j] * getDeterminant(m, s - 1);
+//    }
+//  }
+//  return D;
+//}
