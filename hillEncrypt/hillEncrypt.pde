@@ -13,7 +13,7 @@ boolean keyAccepted = false; //determines if key matrix is valid
 String answer = "";
 
 void setup(){
-  println("Enter the secret message you want to encrypt: ");
+  println("Enter the secret message you want to encrypt. Press ENTER when done.");
 }
 
 void draw(){

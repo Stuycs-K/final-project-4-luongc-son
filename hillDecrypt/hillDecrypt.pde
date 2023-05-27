@@ -8,7 +8,7 @@ boolean acceptingText = true;
 boolean acceptingKey = false;
 
 void setup(){
-  println("Enter the ciphertext you want to decrypt: ");
+  println("Enter the ciphertext you want to decrypt. Press ENTER when done.");
 }
 
 void draw(){
@@ -37,6 +37,7 @@ void keyAction(char c, int KT){
       else{
         acceptingText = false;
         acceptingKey = true;
+        println("Enter the key for the ciphertext. Press ESC when done." );
         //println("TEXT: " + text);
       }
     }
@@ -69,21 +70,37 @@ void keyAction(char c, int KT){
     }
   }
   else { //for key input
-    if (c == ENTER){
+    if (c == ESC){
       acceptingKey = false;
       answer = decrypt(text);
       println("DECRYPTED: " + answer);
     }
     if (c == BACKSPACE){
-      String newtext = "";
-      if (text.length() >= 1){
-        for (int i = 0; i < text.length() - 1; i++){
-          char cc = text.charAt(i);
-          newtext = newtext + Character.toString(cc);
+      String newkeyy = "";
+      if (keyy.length() >= 1){
+        for (int i = 0; i < keyy.length() - 1; i++){
+          char cc = keyy.charAt(i);
+          newkeyy = newkeyy + Character.toString(cc);
         }
-        text = newtext;
+        keyy = newkeyy;
       }
-      println("Current key input: " + text);
+      println("Current key input: " + keyy);
+    }
+    int nc = ((int) c);
+    if ((nc >= 97) && (nc <= 122)){
+      String s = Character.toString(c);
+      s = s.toUpperCase();
+      nc = nc - 32;
+    }
+    if ((nc >= 65) && (nc <= 90)){
+      char addc = char(nc);
+      String add = "" + addc;
+      keyy += add;
+      println(keyy);
+    }
+    if ((c != ESC) && (c != BACKSPACE) && (!((nc >= 65) && (nc <= 90))) 
+    && (!((nc >= 97) && (nc <= 122)))){
+      println("This is not a valid character!");
     }
   }
 }
