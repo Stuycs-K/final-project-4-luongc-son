@@ -4,6 +4,7 @@ String keyy = "";
 String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 String text = ""; //ciphertext
 String answer = "";
+int length_checker = 0;
 boolean acceptingText = true;
 boolean acceptingKey = false;
 
@@ -15,11 +16,11 @@ void draw(){
 }
 
 void keyPressed(){
-  if (keyPressed && acceptingText == true && acceptingKey == false){
+  if (keyPressed && acceptingText == true){
     char c = key;
     keyAction(c, -1);
   }
-  if (keyPressed && acceptingKey == true && acceptingText == false){
+  if (keyPressed && acceptingKey == true){
     char c = key;
     keyAction(c, 1);
   }
@@ -37,7 +38,19 @@ void keyAction(char c, int KT){
       else{
         acceptingText = false;
         acceptingKey = true;
-        println("Enter the key for the ciphertext. Press ESC when done." );
+        if (text.length() % 2 == 0){
+          length_checker = 2;
+        }
+        else if (text.length() % 3 == 0){
+          length_checker = 3;
+        }
+        else if (text.length() % 5 == 0){
+          length_checker = 5;
+        }
+        else if (text.length() % 7 == 0){
+          length_checker = 7;
+        }
+        println("Enter the key for the ciphertext. Press \"1\" when done." );
         //println("TEXT: " + text);
       }
     }
@@ -70,10 +83,16 @@ void keyAction(char c, int KT){
     }
   }
   else { //for key input
-    if (c == ESC){
-      acceptingKey = false;
-      answer = decrypt(text);
-      println("DECRYPTED: " + answer);
+    if (c == '1'){
+      if ((keyy.length()) != (length_checker * length_checker)){
+        println("Key length is invalid! Try again. Press \"1\" when done.");
+        acceptingKey = true;
+      }
+      else{
+        acceptingKey = false;
+        answer = decrypt(text);
+        println("DECRYPTED: " + answer);
+      }
     }
     if (c == BACKSPACE){
       String newkeyy = "";
