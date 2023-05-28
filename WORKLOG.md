@@ -42,7 +42,7 @@
  - Extensive testing, verifying that it works (Cyrus)
 
 ## 5/27/2023
- - Pushed starter code for hillDecrypt (Nelson)
+ - Pushed starter code for hillDecrypt, did user input (Nelson)
 
 
 **Resources Used**  
