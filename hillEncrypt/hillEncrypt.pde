@@ -101,15 +101,6 @@ String encrypt(String text){
   totalValuesN = new int[L];
 //KEY
   finalize_key(L, state, keyState, keyyValuesNM);
-  //for(int i = 0; i < L; i++){
-  //  textValuesN[i] = (int(text.charAt(i))) - 65;
-  //  println(textValuesN[i]);
-  //}
-  //for(int i = 0; i < keyState; i++){
-  //  keyyValuesN[i] = int(random(0, 26));
-  //  keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
-  //  keyy += alphabet.charAt(keyyValuesN[i]);
-  //} //makes the key    
   println("Key: " + keyy);
   int keyCounter = 0; //keeps track of key's indicies
   int messageCounter = 0; //keeps track of message's component's indicies
@@ -137,24 +128,6 @@ String encrypt(String text){
     String q = Character.toString(Q);
     encrypted += q;
   }
-  // START OF ENCRYPTION - VERSION 1
-  //for(int i = 0; i < NM; ++i){
-  //  for(int j = 0; j < state; ++j){
-  //      char add;
-  //      int total = 0;
-  //      for(int k = 0; k < state; ++k){
-  //          println("Multiplying: ", keyyValuesN[j * state + k], textValuesN[k]);
-  //         total += keyyValuesN[j * state +k] * textValuesN[k]; 
-  //      }
-  //      println(total);
-  //      total = total % 26;
-  //      println(total);
-  //      add = char(total + 65);
-  //      println(add);
-  //      encrypted += add;
-  //  }
-  //}
-  
   return encrypted;
 }
 
