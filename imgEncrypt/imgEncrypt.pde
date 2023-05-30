@@ -11,6 +11,7 @@ String text = "";
 boolean accepting = true; //determines if user input is being accepted
 boolean keyAccepted = false; //determines if key matrix is valid
 String answer = "";
+PImage img;
 
 void setup(){
   size(400,400);
@@ -29,10 +30,9 @@ void keyPressed(){
 void keyAction(char c){
   if (c == ENTER){
     accepting = false;
-    PImage img;
     img = loadImage(text); //to stop program if file doesn't work
     image(img,0,0);
-    encryptImg(text);
+    encryptImg();
   }
   if (c == BACKSPACE){
     String newtext = "";
@@ -61,8 +61,27 @@ void keyAction(char c){
   }
 }
 
-void encryptImg(String filename){
-  
+void encryptImg(){
+  println(img.width,img.height);
+  img.loadPixels();
+  int state = 3;
+  int keyState = 9;
+  keyyValuesNM = new int[state][state];
+  finalize_key(3,state,keyState,keyyValuesNM);
+  int keyCounter = 0;
+  int messageCounter = 0;
+  for(int i = 0; i < img.pixels.length; ++i){
+    color c = img.pixels[i];
+    int r = int(red(c));
+    int g = int(green(c));
+    int b = int(blue(c));
+    int r2, g2, b2;
+    for(int j = 0; j < state; ++j){
+       for(int k = 0; k < state; ++k){
+         
+       }
+    }
+  }
 }
 
 boolean coprime(int x, int y){
