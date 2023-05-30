@@ -36,3 +36,5 @@ Initial Plan
    - Try to ensure that the message's length is a multiple of n, it'll make it easier
 
 ## Image Encryption/Decryption
+ - Imagine each pixel of an image as a "message" of three length
+   - This allows you to use a 3x3 matrix key to encode each individual pixel for a new, encoded image
