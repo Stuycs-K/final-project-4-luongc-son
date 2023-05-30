@@ -128,3 +128,32 @@ String decrypt(String text){
   String decrypted = "";
   return decrypted;
 }
+
+int multiplicative_inverse_of_determinant(int m[][], int s){
+  int D = ((int) getDeterminant(m, s)) % 26;
+  boolean Z = true;
+  int z = 0;
+  while (Z == true){
+    z++;
+    if (((D * z) % 26) == 1){
+      Z = false;
+    }
+  }
+  return z;
+}
+
+double getDeterminant(int m[][], int s){
+  double D = 0;
+  if (s == 1){
+    D = m[0][0];
+  }
+  else if (s == 2){
+    D = (m[0][0] * m[1][1]) - (m[1][0] * m[0][1]);
+  }
+  else{
+    for (int j = 0; j < s; j++){
+      D += Math.pow(-1.0, 1.0 + j + 1.0) * m[0][j] * getDeterminant(m, s - 1);
+    }
+  }
+  return D;
+}
