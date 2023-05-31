@@ -66,22 +66,37 @@ void encryptImg(){
   img.loadPixels();
   int state = 3;
   int keyState = 9;
+  textValuesN = new int[3];
+  totalValuesN = new int[3];
+  keyyValuesN = new int [9];
   keyyValuesNM = new int[state][state];
   finalize_key(3,state,keyState,keyyValuesNM);
   int keyCounter = 0;
-  int messageCounter = 0;
+  int total = 0;
   for(int i = 0; i < img.pixels.length; ++i){
     color c = img.pixels[i];
-    int r = int(red(c));
-    int g = int(green(c));
-    int b = int(blue(c));
-    int r2, g2, b2;
+    textValuesN[0] = int(red(c));
+    textValuesN[1] = int(green(c));
+    textValuesN[2] = int(blue(c));
+    int colorValues[];
+    colorValues = new int[3];
     for(int j = 0; j < state; ++j){
        for(int k = 0; k < state; ++k){
-         
-       }
-    }
-  }
+        total += keyyValuesN[keyCounter] * textValuesN[k];
+        keyCounter++;
+       }//k
+       total = total % 255;
+       colorValues[j] = total;
+       total = 0;
+    }//j
+    keyCounter = 0;
+    color c2 = color(colorValues[0],colorValues[1],colorValues[2]);
+    img.pixels[i] = c2;
+  } //pixels
+  img.updatePixels();
+  image(img,0,0);
+  println(keyy);
+  img.save("encryptedImg.jpg");
 }
 
 boolean coprime(int x, int y){
@@ -113,8 +128,8 @@ void genKey(int L, int keyState){
     //println(textValuesN[i]);
   }
   for(int i = 0; i < keyState; i++){
+    println(i);
     keyyValuesN[i] = int(random(0, 26));
-    keyyValuesL[i] = alphabet.charAt(keyyValuesN[i]);
     keyy += alphabet.charAt(keyyValuesN[i]);
   } //makes the key 
   int KC = 0;
