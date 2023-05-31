@@ -50,6 +50,10 @@
 ## 5/29/2023
  - Created framework for imgEncrypt file (Cyrus)
 
+## 5/30/2023
+ - Completed imgEncrypt (Cyrus)
+ - Wrote the helper functions for hillDecrypt's algorithm, researching Processing libraries, learning how to use Pallav.Matrix (Nelson)
+
 **Resources Used**  
 - [Geeks for Geeks (Background Info)](https://www.geeksforgeeks.org/hill-cipher/)
 - [Hill Cipher Advantages/Weaknesses](https://intellipaat.com/blog/what-is-hill-cipher/?US)
