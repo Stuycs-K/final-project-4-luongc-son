@@ -26,7 +26,7 @@
    - The text being encrypted should be written as a vector (a matrix with one column and n rows)
  ### Decrypting
  - To decrypt the message, each block is multiplied by the inverse of the matrix used for encryption
-   - The text being decrypted should be written as a vector (a matrix with one column and n rows)
+   - The text being decrypted should be written as a vector (a matrix with one column and n rows)  
  - If the message is longer than n letters, break it up into matrices, each with n letters
    - Run the same encryption or decryption process on each new matrix, and then join the results together
    - Try to ensure that the message's length is a multiple of n, it'll make it easier
