@@ -19,10 +19,12 @@
 
 ## How it Works
  - Each letter is represented by a number modulo 26 (usually 0-25)
+ ### Encrypting
  - To encrypt a message, each block of n letters is multiplied by an invertible n × n matrix, against modulus 26
    - For matrix multiplication, the number of columns in the first matrix must be equal to the number of rows in the second matrix
    - The matrix used for encryption is the cipher key, and it should be chosen randomly from the set of invertible n × n matrices (modulo 26)
    - The text being encrypted should be written as a vector (a matrix with one column and n rows)
+ ### Decrypting
  - To decrypt the message, each block is multiplied by the inverse of the matrix used for encryption
    - The text being decrypted should be written as a vector (a matrix with one column and n rows)
  - If the message is longer than n letters, break it up into matrices, each with n letters
