@@ -60,6 +60,7 @@
 
 ## 6/1/2023
  - Discarded the library since the only constructor it had was a private one, finished hillDecrypt functions but there's still errors after testing (Nelson)
+ - Updated the Presentation/Readme/Homework to reflect new information and topics (Cyrus)
 
 **Resources Used**  
 - [Geeks for Geeks (Background Info)](https://www.geeksforgeeks.org/hill-cipher/)
