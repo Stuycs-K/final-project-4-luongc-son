@@ -31,4 +31,5 @@
 
 ## Image Encryption/Decryption
  - Imagine each pixel of an image as a "message" of three length
-   - This allows you to use a 3x3 matrix key to encode each individual pixel for a new, encoded image
+ - This "message" isn't of letters, but rather of the RGB values of the pixel
+ - This allows you to use a 3x3 matrix key to encode each individual pixel for a new, encoded image
