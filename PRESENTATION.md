@@ -24,12 +24,12 @@
    - For matrix multiplication, the number of columns in the first matrix must be equal to the number of rows in the second matrix
    - The matrix used for encryption is the cipher key, and it should be chosen randomly from the set of invertible n × n matrices (modulo 26)
    - The text being encrypted should be written as a vector (a matrix with one column and n rows)
+   - If the message is longer than n letters, break it up into matrices, each with n letters
+   - Run the same encryption or decryption process on each new matrix, and then join the results together
+   - Try to ensure that the message's length is a multiple of n, it'll make it easier
  ### Decrypting
  - To decrypt the message, each block is multiplied by the inverse of the matrix used for encryption
    - The text being decrypted should be written as a vector (a matrix with one column and n rows)  
- - If the message is longer than n letters, break it up into matrices, each with n letters
-   - Run the same encryption or decryption process on each new matrix, and then join the results together
-   - Try to ensure that the message's length is a multiple of n, it'll make it easier
 
 ## Image Encryption/Decryption
  - Imagine each pixel of an image as a "message" of three length
