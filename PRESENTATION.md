@@ -23,6 +23,7 @@
  - To encrypt a message, each block of n letters is multiplied by an invertible n × n matrix, against modulus 26
    - For matrix multiplication, the number of columns in the first matrix must be equal to the number of rows in the second matrix
    - The matrix used for encryption is the cipher key, and it should be chosen randomly from the set of invertible n × n matrices (modulo 26)
+     - The key has to 
    - The text being encrypted should be written as a vector (a matrix with one column and n rows)
    - If the message is longer than n letters, break it up into matrices, each with n letters
    - Run the same encryption or decryption process on each new matrix, and then join the results together
@@ -35,3 +36,5 @@
  - Imagine each pixel of an image as a "message" of three length
  - This "message" isn't of letters, but rather of the RGB values of the pixel
  - This allows you to use a 3x3 matrix key to encode each individual pixel for a new, encoded image
+   - The numbers, once encrypted are modded by 255 rather than 26 in order to fit the new 0-255 scale
+ - Other than that, encryption and decryption are essentially identical to encrypting/decrypting text messages
