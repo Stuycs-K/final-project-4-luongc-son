@@ -119,7 +119,7 @@ void keyAction(char c, int KT){
             char y = alphabet.charAt(ii);
             String temptemp = Character.toString(y);
             if (temptemp.equals(temp) == true){
-              keyyValuesN[i] = alphabet.charAt(ii);
+              keyyValuesN[i] = alphabet.charAt(ii) - 65;
             }
           }
         }
@@ -190,6 +190,9 @@ String decrypt(String text){
       MCD++;
     } //i
     for (int i = 0; i < text.length(); i++){
+      while (totalValuesN[i] < 0){
+        totalValuesN[i] += 26;
+      }
       char R = alphabet.charAt(totalValuesN[i]);
       String r = Character.toString(R);
       //String r = "  x  " + totalValuesN[i];
@@ -210,12 +213,19 @@ boolean makeInverseKeyMatrix(int m[][]){
     println("Key matrix is invalid, cannot find inverse!");
     return false;
   }
-  int adj[][] = new int [m[0].length][m[0].length];
-  adj = adjoint(m);
+  int minorMatrix[][] = new int [m[0].length][m[0].length];
   for (int i = 0; i < m[0].length; i++){
     for (int j = 0; j < m[0].length; j++){
-      int MID = multiplicative_inverse_of_determinant(m, m[0].length);
-      invkeyyValuesNM[i][j] = adj[i][j] * MID;
+      minorMatrix[i][j] = getMinorMatrix(m, i, j);
+    }
+  }
+  int coFact0rs[][] = getCoFact0rMatrix(minorMatrix);
+  int adj[][] = transposeV2(coFact0rs);
+  
+  int MID = multiplicative_inverse_of_determinant(m, m[0].length);
+  for (int i = 0; i < m[0].length; i++){
+    for (int j = 0; j < m[0].length; j++){
+      invkeyyValuesNM[i][j] = (adj[i][j] * MID) % 26;
     }
   }
   int cf = 0;
@@ -226,6 +236,64 @@ boolean makeInverseKeyMatrix(int m[][]){
     }
   }
   return true;
+}
+
+int[][] getCoFact0rMatrix(int m[][]){
+  int cofactors[][] = new int[m.length][m.length];
+  for (int i = 0; i < m.length; i++){
+    for (int j = 0; j < m.length; j++){
+      int CF = (int) Math.pow(-1, i + j) * m[i][j];
+      cofactors[i][j] = CF;
+    }
+  }
+  return cofactors;
+}
+
+int getMinorMatrix(int m[][], int R, int C){
+  int submatrix[][] = new int[m.length - 1][m.length - 1];
+  for (int i = 0, r = 0; i < m[0].length; i++){
+    if (i != R){
+      for (int j = 0, c = 0; j < m[0].length; j++){
+        if (j != C){
+          submatrix[r][c] = m[i][j];
+          c++;
+        }
+      }
+      r++;
+    }
+  }
+  return getDeterminant_r(submatrix);
+}
+
+int getDeterminant_r(int subm[][]){
+  if (subm.length == 1){
+    return subm[0][0];
+  }
+  int D = 0;
+  int sign = 1;
+  for (int i = 0; i < subm.length; i++){
+    int sub[][] = getSub(subm, 0, i);
+    int minor = getDeterminant_r(sub);
+    D += subm[0][i] * sign * minor;
+    sign *= -1;
+  }
+  return D;
+}
+
+int[][] getSub(int m[][], int R, int C){
+  int sub[][] = new int[m.length - 1][m.length - 1];
+  for (int i = 0, r = 0; i < m.length; i++){
+    if (i != R){
+      for (int j = 0, c = 0; j < m[i].length; j++){
+        if (j != C){
+          sub[r][c] = m[i][j];
+          c++;
+        }
+      }
+      r++;
+    }
+  }
+  return sub;
 }
 
 void getCoFact0r(int m[][], int temp[][], int P, int Q, int N){
@@ -256,28 +324,83 @@ int[][] adjoint(int m[][]){
   for (int i = 0; i < N; i++){
     for (int j = 0; j < N; j++){
       getCoFact0r(m, temp, i, j, N);
-      int D = (int) (getDeterminant(temp, N - 1));
-      adj[j][i] = (sign * D);
+      sign = ((i + j) % 2 == 0)? 1 : -1;
+      adj[j][i] = (sign * (determinant(temp, N - 1)));
       while (adj[j][i] < 0){
         adj[j][i] += 26;
       }
-      sign *= -1;
+      adj[j][i] = adj[j][i] % 26;
     }
   }
   return adj;
 }
 
-int multiplicative_inverse_of_determinant(int m[][], int s){
-  int D = ((int) getDeterminant(m, s)) % 26;
-  boolean Z = true;
-  int z = 0;
-  while (Z == true){
-    z++;
-    if (((D * z) % 26) == 1){
-      Z = false;
+void transpose(int m[][]){
+  int t[][] = new int[m[0].length][m[0].length];
+  for (int i = 0; i < m[0].length; i++){
+    for (int ii = 0; ii < m[0].length; ii++){
+      t[ii][i] = m[i][ii];
     }
   }
-  return z;
+  for (int j = 0; j < m[0].length; j++){
+    for (int jj = 0; jj < m[0].length; jj++){
+      m[j][jj] = t[j][jj];
+    }
+  }
+}
+
+int[][] transposeV2(int m[][]){
+  int t[][] = new int[m[0].length][m[0].length];
+  for (int i = 0; i < m[0].length; i++){
+    for (int ii = 0; ii < m[0].length; ii++){
+      t[ii][i] = m[i][ii];
+    }
+  }
+  return t;
+}
+
+void display(int m[][]){
+  int counter = 0;
+  for (int r = 0; r < m[0].length; r++){
+    for (int c = 0; c < m[0].length; c++){
+      println("COUNTER: " + counter + " / " + m[r][c]);
+      counter++;
+    }
+  }
+}
+
+int determinant(int m[][], int n){
+  int D = 0;
+  if (n == 1){
+    return m[0][0];
+  }
+  int [][] tmp = new int[m[0].length][m[0].length];
+  int sign = 1;
+  for (int fr = 0; fr < n; fr++){
+    getCoFact0r(m, tmp, 0, fr, n);
+    D += sign * m[0][fr] * determinant(tmp, n - 1);
+    sign *= -1;
+  }
+  return D;
+}
+
+int multiplicative_inverse_of_determinant(int m[][], int s){
+  int D = ((int) getDeterminant(m, s)) % 26;
+  for (int z = 0; z <= 999999999; z++){
+    if (((D * z) % 26) == 1){
+      return z;
+    }
+  }
+  return -1;
+  //boolean Z = true;
+  //int z = 0;
+  //while (Z == true){
+  //  z++;
+  //  if (((D * z) % 26) == 1){
+  //    Z = false;
+  //  }
+  //}
+  //return z;
 }
 
 double getDeterminant(int m[][], int s){
