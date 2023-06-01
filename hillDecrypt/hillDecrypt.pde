@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import pallav.Matrix.*;
+
 
 String keyy = "";
 String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -13,9 +13,6 @@ int keyyValuesNM[][];
 char keyyValuesL[];
 int textValuesN[];
 int totalValuesN[];
-float keyyValuesF[];
-float keyyValuesFM[][];
-float invkeyyValuesFM[][];
 int invkeyyValuesNM[][];
 int invkeyyValuesN[];
 
@@ -61,6 +58,14 @@ void keyAction(char c, int KT){
         else if (text.length() % 7 == 0){
           length_checker = 7;
         }
+        textValuesN = new int[text.length()];
+        totalValuesN = new int[text.length()];
+        for (int i = 0; i < text.length(); i++){
+          char w = text.charAt(i);
+          int NL = ((int) w);
+          NL = NL - 65;
+          textValuesN[i] = NL;
+        }
         println("Enter the key for the ciphertext. Press \"1\" when done." );
         //println("TEXT: " + text);
       }
@@ -103,8 +108,10 @@ void keyAction(char c, int KT){
         acceptingKey = false;
         keyyValuesN = new int[keyy.length()];
         keyyValuesL = new char[keyy.length()];
+        invkeyyValuesN = new int[keyy.length()];
         int Y = (int)sqrt(keyy.length());
         keyyValuesNM = new int[Y][Y];
+        invkeyyValuesNM = new int[Y][Y];
         for (int i = 0; i < keyy.length(); i++){
           keyyValuesL[i] = keyy.charAt(i);
           String temp = Character.toString(keyy.charAt(i));
@@ -159,64 +166,105 @@ void keyAction(char c, int KT){
 
 String decrypt(String text){
   String decrypted = "";
-  makeInverseKeyMatrix();
-  int keyCounter = 0; //keeps track of key's indicies
-  int messageCounter = 0; //keeps track of message's component's indicies
-  int MCD = 0; //number of matrix components done
-  int total = 0;
-  int totalCounter = 0;
-  int NM = textValuesN.length / length_checker;
-  for (int i = 0; i < NM; i++){ //break up message into manageable components
-    for (int j = 0; j < length_checker; j++){ //runs through the key's matrix
-      for (int k = 0; k < length_checker; k++){ //runs through the message's components
-        total += invkeyyValuesN[keyCounter] * textValuesN[(MCD * length_checker) + messageCounter];
-        keyCounter++;
-        messageCounter++;
-      } //k
-      total = total % 26;
-      totalValuesN[totalCounter] = total;
-      total = 0;
-      messageCounter = messageCounter - length_checker;
-      totalCounter++;
-    } //j
-    keyCounter = 0;
-    MCD++;
-  } //i
-  for (int i = 0; i < keyyValuesN.length; i++){
-    char R = alphabet.charAt(totalValuesN[i]);
-    String r = Character.toString(R);
-    decrypted += r;
+  if (makeInverseKeyMatrix(keyyValuesNM)){
+    int keyCounter = 0; //keeps track of key's indicies //<>//
+    int messageCounter = 0; //keeps track of message's component's indicies //<>//
+    int MCD = 0; //number of matrix components done //<>//
+    int total = 0;
+    int totalCounter = 0;
+    int NM = textValuesN.length / length_checker;
+    for (int i = 0; i < NM; i++){ //break up message into manageable components
+      for (int j = 0; j < length_checker; j++){ //runs through the key's matrix
+        for (int k = 0; k < length_checker; k++){ //runs through the message's components
+          total += invkeyyValuesN[keyCounter] * textValuesN[(MCD * length_checker) + messageCounter];
+          keyCounter++;
+          messageCounter++;
+        } //k
+        total = total % 26;
+        totalValuesN[totalCounter] = total;
+        total = 0;
+        messageCounter = messageCounter - length_checker;
+        totalCounter++;
+      } //j
+      keyCounter = 0;
+      MCD++;
+    } //i
+    for (int i = 0; i < text.length(); i++){
+      char R = alphabet.charAt(totalValuesN[i]);
+      String r = Character.toString(R);
+      //String r = "  x  " + totalValuesN[i];
+      decrypted += r;
+    }
+    return decrypted;
   }
-  return decrypted;
+  else{
+    String err = "Something went wrong!";
+    return err;
+  }
 }
 
-void makeInverseKeyMatrix(){
-  keyyValuesF = new float[keyyValuesN.length];
-  for (int i = 0; i < keyyValuesN.length; i++){
-    keyyValuesF[i] = (float) keyyValuesN[i];
+
+boolean makeInverseKeyMatrix(int m[][]){
+  int D = (int) getDeterminant(m, m[0].length);
+  if (D == 0){
+    println("Key matrix is invalid, cannot find inverse!");
+    return false;
   }
-  int fm = (int) sqrt(keyyValuesN.length);
-  int cf = 0;
-  keyyValuesFM = new float[fm][fm];
-  invkeyyValuesFM = new float[fm][fm];
-  for (int ii = 0; ii < fm; ii++){
-    for (int iii = 0; iii < fm; iii++){
-      keyyValuesFM[ii][iii] = keyyValuesF[cf];
-      cf++;
+  int adj[][] = new int [m[0].length][m[0].length];
+  adj = adjoint(m);
+  for (int i = 0; i < m[0].length; i++){
+    for (int j = 0; j < m[0].length; j++){
+      int MID = multiplicative_inverse_of_determinant(m, m[0].length);
+      invkeyyValuesNM[i][j] = adj[i][j] * MID;
     }
   }
-  cf = 0;
-  invkeyyValuesNM = new int[fm][fm];
-  invkeyyValuesN = new int[fm * fm];
-  invkeyyValuesFM = Matrix.inverse(keyyValuesFM);
-  for (int r = 0; r < fm; r++){
-    for (int c = 0; c < fm; c++){
-      invkeyyValuesFM[r][c] = invkeyyValuesFM[r][c] % 26;
-      invkeyyValuesNM[r][c] = (int) invkeyyValuesFM[r][c];
+  int cf = 0;
+  for (int r = 0; r < invkeyyValuesNM[0].length; r++){
+    for (int c = 0; c < invkeyyValuesNM[0].length; c++){
       invkeyyValuesN[cf] = invkeyyValuesNM[r][c];
       cf++;
     }
   }
+  return true;
+}
+
+void getCoFact0r(int m[][], int temp[][], int P, int Q, int N){
+  int i = 0;
+  int j = 0;
+  for (int r = 0; r < N; r++){
+    for (int c = 0; c < N; c++){
+      if (r != P && c != Q){
+        temp[i][j++] = m[r][c];
+        if (j == N - 1){
+          j = 0;
+          i++;
+        }
+      }
+    }
+  }
+}
+
+int[][] adjoint(int m[][]){
+  int adj[][] = new int[m[0].length][m[0].length];
+  if (m[0].length == 1){
+    adj[0][0] = 1;
+    return adj;
+  }
+  int sign = 1;
+  int N = m[0].length;
+  int temp[][] = new int[N][N];
+  for (int i = 0; i < N; i++){
+    for (int j = 0; j < N; j++){
+      getCoFact0r(m, temp, i, j, N);
+      int D = (int) (getDeterminant(temp, N - 1));
+      adj[j][i] = (sign * D);
+      while (adj[j][i] < 0){
+        adj[j][i] += 26;
+      }
+      sign *= -1;
+    }
+  }
+  return adj;
 }
 
 int multiplicative_inverse_of_determinant(int m[][], int s){
