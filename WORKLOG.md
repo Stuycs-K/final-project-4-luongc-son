@@ -58,6 +58,9 @@
  - Edited presentation.md file (Cyrus)
  - Pushed temporary code for hillDecrypt, will need to fix issue regarding a function provided by the new library (Nelson)
 
+## 6/1/2023
+ - Discarded the library since the only constructor it had was a private one, finished hillDecrypt functions but there's still errors after testing (Nelson)
+
 **Resources Used**  
 - [Geeks for Geeks (Background Info)](https://www.geeksforgeeks.org/hill-cipher/)
 - [Hill Cipher Advantages/Weaknesses](https://intellipaat.com/blog/what-is-hill-cipher/?US)
