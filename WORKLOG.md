@@ -63,6 +63,9 @@
  - Updated the Presentation/Readme/Homework to reflect new information and topics (Cyrus)
  - Created imgDecrypt file (Cyrus)
 
+## 6/2/2023
+ - Updated homework
+
 **Resources Used**  
 - [Geeks for Geeks (Background Info)](https://www.geeksforgeeks.org/hill-cipher/)
 - [Hill Cipher Advantages/Weaknesses](https://intellipaat.com/blog/what-is-hill-cipher/?US)
