@@ -16,10 +16,8 @@ int invkeyyValuesN[];
 void setup(){
   println("Enter the ciphertext you want to decrypt. Press ENTER when done.");
 }
-
 void draw(){
 }
-
 void keyPressed(){
   if (keyPressed && acceptingText == true){
     char c = key;
@@ -169,9 +167,9 @@ String decrypt(String text){
     int MCD = 0; //number of matrix components done //<>//
     int total = 0;
     int totalCounter = 0;
-    int NM = textValuesN.length / length_checker;
-    for (int i = 0; i < NM; i++){ //break up message into manageable components
-      for (int j = 0; j < length_checker; j++){ //runs through the key's matrix
+    int NM = textValuesN.length / length_checker; //<>//
+    for (int i = 0; i < NM; i++){ //break up message into manageable components //<>//
+      for (int j = 0; j < length_checker; j++){ //runs through the key's matrix //<>//
         for (int k = 0; k < length_checker; k++){ //runs through the message's components
           total += invkeyyValuesN[keyCounter] * textValuesN[(MCD * length_checker) + messageCounter];
           keyCounter++;
@@ -239,7 +237,7 @@ int[][] getCoFact0rMatrix(int m[][]){
   int cofactors[][] = new int[m.length][m.length];
   for (int i = 0; i < m.length; i++){
     for (int j = 0; j < m.length; j++){
-      int CF = (int) Math.pow(-1, i + j) * m[i][j];
+      int CF = (int) ((Math.pow(-1, i + j) * m[i][j]));
       cofactors[i][j] = CF;
     }
   }
@@ -247,7 +245,7 @@ int[][] getCoFact0rMatrix(int m[][]){
 }
 
 int getMinorMatrix(int m[][], int R, int C){
-  int submatrix[][] = new int[m.length - 1][m.length - 1];
+  int submatrix[][] = new int[m.length - 1][m[0].length - 1];
   for (int i = 0, r = 0; i < m[0].length; i++){
     if (i != R){
       for (int j = 0, c = 0; j < m[0].length; j++){
@@ -332,20 +330,6 @@ int[][] adjoint(int m[][]){
   return adj;
 }
 
-void transpose(int m[][]){
-  int t[][] = new int[m[0].length][m[0].length];
-  for (int i = 0; i < m[0].length; i++){
-    for (int ii = 0; ii < m[0].length; ii++){
-      t[ii][i] = m[i][ii];
-    }
-  }
-  for (int j = 0; j < m[0].length; j++){
-    for (int jj = 0; jj < m[0].length; jj++){
-      m[j][jj] = t[j][jj];
-    }
-  }
-}
-
 int[][] transposeV2(int m[][]){
   int t[][] = new int[m[0].length][m[0].length];
   for (int i = 0; i < m[0].length; i++){
@@ -383,21 +367,12 @@ int determinant(int m[][], int n){
 
 int multiplicative_inverse_of_determinant(int m[][], int s){
   int D = ((int) getDeterminant(m, s)) % 26;
-  for (int z = 0; z <= 999999999; z++){
+  for (int z = 1; z <= 999999999; z++){
     if (((D * z) % 26) == 1){
       return z;
     }
   }
   return -1;
-  //boolean Z = true;
-  //int z = 0;
-  //while (Z == true){
-  //  z++;
-  //  if (((D * z) % 26) == 1){
-  //    Z = false;
-  //  }
-  //}
-  //return z;
 }
 
 double getDeterminant(int m[][], int s){
@@ -413,5 +388,6 @@ double getDeterminant(int m[][], int s){
       D += Math.pow(-1.0, 1.0 + j + 1.0) * m[0][j] * getDeterminant(m, s - 1);
     }
   }
+  println(D);
   return D;
 }
