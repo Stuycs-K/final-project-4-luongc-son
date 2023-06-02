@@ -23,7 +23,7 @@
  - To encrypt a message, each block of n letters is multiplied by an invertible n × n matrix, against modulus 26
    - For matrix multiplication, the number of columns in the first matrix must be equal to the number of rows in the second matrix
    - The matrix used for encryption is the cipher key, and it should be chosen randomly from the set of invertible n × n matrices (modulo 26)
-     - The key has to 
+     - The key's length must be the square of the smallest factor (excluding 1) of the length of the secret message
    - The text being encrypted should be written as a vector (a matrix with one column and n rows)
    - If the message is longer than n letters, break it up into matrices, each with n letters
    - Run the same encryption or decryption process on each new matrix, and then join the results together
