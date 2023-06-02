@@ -1,6 +1,3 @@
-import java.util.Scanner;
-
-
 String keyy = "";
 String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 String text = ""; //ciphertext
@@ -201,7 +198,7 @@ String decrypt(String text){
     return decrypted;
   }
   else{
-    String err = "Something went wrong!";
+    String err = "Try a different key.";
     return err;
   }
 }
