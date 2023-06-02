@@ -30,7 +30,9 @@
    - Try to ensure that the message's length is a multiple of n, it'll make it easier
  ### Decrypting
  - To decrypt the message, each block is multiplied by the inverse of the matrix used for encryption
-   - The text being decrypted should be written as a vector (a matrix with one column and n rows)  
+   - The text being decrypted should be written as a vector (a matrix with one column and n rows)  \
+ - The inverse of the key matrix is multiplicative inverse of the determinant times the adjugate matrix
+ - The adjugate matrix is the transpose of the cofactor matrix
 
 ## Image Encryption/Decryption
  - Imagine each pixel of an image as a "message" of three length
