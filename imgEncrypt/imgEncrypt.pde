@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import java.util.Scanner;
-
 String keyy = "";
 int keyyValuesN[];
 int keyyValuesNM[][];
@@ -137,7 +135,6 @@ void encryptImg(){
   println(img.width,img.height);
   img.loadPixels();
   int state = 3;
-  int keyState = 9;
   textValuesN = new int[3];
   totalValuesN = new int[3];
   keyyValuesN = new int [9];
