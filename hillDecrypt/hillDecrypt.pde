@@ -168,13 +168,16 @@ String decrypt(String text){
     int total = 0;
     int totalCounter = 0;
     int NM = textValuesN.length / length_checker; //<>//
+    println("==============================");
     for (int i = 0; i < NM; i++){ //break up message into manageable components //<>//
       for (int j = 0; j < length_checker; j++){ //runs through the key's matrix //<>//
         for (int k = 0; k < length_checker; k++){ //runs through the message's components
           total += invkeyyValuesN[keyCounter] * textValuesN[(MCD * length_checker) + messageCounter];
+          println(invkeyyValuesN[keyCounter], textValuesN[(MCD * length_checker) + messageCounter]);
           keyCounter++;
           messageCounter++;
         } //k
+        println("TOTAL: ", total);
         total = total % 26;
         totalValuesN[totalCounter] = total;
         total = 0;
@@ -184,10 +187,12 @@ String decrypt(String text){
       keyCounter = 0;
       MCD++;
     } //i
+     //println("=========================");
     for (int i = 0; i < text.length(); i++){
       while (totalValuesN[i] < 0){
         totalValuesN[i] += 26;
       }
+      //println(totalValuesN[i]);
       char R = alphabet.charAt(totalValuesN[i]);
       String r = Character.toString(R);
       //String r = "  x  " + totalValuesN[i];
@@ -218,15 +223,21 @@ boolean makeInverseKeyMatrix(int m[][]){
   int adj[][] = transposeV2(coFact0rs);
   
   int MID = multiplicative_inverse_of_determinant(m, m[0].length);
+  println("MID: ", MID);
   for (int i = 0; i < m[0].length; i++){
     for (int j = 0; j < m[0].length; j++){
-      invkeyyValuesNM[i][j] = (adj[i][j] * MID) % 26;
+      int temp = (adj[i][j] * MID) % 26;
+      if(temp < 0){
+        temp += 26;
+      }
+      invkeyyValuesNM[i][j] = temp;
     }
   }
   int cf = 0;
   for (int r = 0; r < invkeyyValuesNM[0].length; r++){
     for (int c = 0; c < invkeyyValuesNM[0].length; c++){
       invkeyyValuesN[cf] = invkeyyValuesNM[r][c];
+      println(invkeyyValuesN[cf]);
       cf++;
     }
   }
@@ -246,7 +257,7 @@ int[][] getCoFact0rMatrix(int m[][]){
 
 int getMinorMatrix(int m[][], int R, int C){
   int submatrix[][] = new int[m.length - 1][m[0].length - 1];
-  for (int i = 0, r = 0; i < m[0].length; i++){
+  for (int i = 0, r = 0; i < m.length; i++){
     if (i != R){
       for (int j = 0, c = 0; j < m[0].length; j++){
         if (j != C){
@@ -388,6 +399,6 @@ double getDeterminant(int m[][], int s){
       D += Math.pow(-1.0, 1.0 + j + 1.0) * m[0][j] * getDeterminant(m, s - 1);
     }
   }
-  println(D);
+  //println(D);
   return D;
 }
