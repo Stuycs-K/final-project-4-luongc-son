@@ -187,12 +187,13 @@ String decrypt(String text){
       keyCounter = 0;
       MCD++;
     } //i
-     //println("=========================");
+     println("=========================");
     for (int i = 0; i < text.length(); i++){
       while (totalValuesN[i] < 0){
         totalValuesN[i] += 26;
+        //println(totalValuesN[i]);
       }
-      //println(totalValuesN[i]);
+      println(totalValuesN[i]);
       char R = alphabet.charAt(totalValuesN[i]);
       String r = Character.toString(R);
       //String r = "  x  " + totalValuesN[i];
@@ -282,6 +283,7 @@ int getDeterminant_r(int subm[][]){
     int minor = getDeterminant_r(sub);
     D += subm[0][i] * sign * minor;
     sign *= -1;
+    println(D);
   }
   return D;
 }
@@ -377,8 +379,13 @@ int determinant(int m[][], int n){
 }
 
 int multiplicative_inverse_of_determinant(int m[][], int s){
-  int D = ((int) getDeterminant(m, s)) % 26;
+  int D = ((int) getDeterminant_r(m)) % 26;
+  if(D < 0){
+    D += 26;
+  }
+  println("Determinant: ",D);
   for (int z = 1; z <= 999999999; z++){
+    //println(z);
     if (((D * z) % 26) == 1){
       return z;
     }
