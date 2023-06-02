@@ -286,7 +286,7 @@ int[][] getSub(int m[][], int R, int C){
           sub[r][c] = m[i][j];
           c++;
         }
-      }
+      }//j
       r++;
     }
   }
