@@ -64,7 +64,8 @@
  - Created imgDecrypt file (Cyrus)
 
 ## 6/2/2023
- - Updated homework
+ - Updated homework (Nelson)
+ - Made imgDecrypt code and tried to resolve issues, but they're still persisting (Nelson and Cyrus)
 
 **Resources Used**  
 - [Geeks for Geeks (Background Info)](https://www.geeksforgeeks.org/hill-cipher/)
