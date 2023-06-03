@@ -82,7 +82,7 @@ void encryptImg(){
     colorValues = new int[3];
     for(int j = 0; j < state; ++j){
        for(int k = 0; k < state; ++k){
-         if(i < 2){
+         if(i < 1){
            println(textValuesN[k], keyyValuesN[keyCounter] * textValuesN[k]);
          }
         total += keyyValuesN[keyCounter] * textValuesN[k];
@@ -90,8 +90,8 @@ void encryptImg(){
        }//k
        
        total = total % 255;
-       if(i < 2){
-         println(total);
+       if(i < 1){
+         println("TOTAL: ", total);
        }
        colorValues[j] = total;
        total = 0;

@@ -152,13 +152,13 @@ void decryptImg(){
       String RGBs = "RGB";
         for(int j = 0; j < state; ++j){
           for(int k = 0; k < state; ++k){
-            if(i < 2){
+            if(i < 1){
               println(RGBs.charAt(k), ": ",textValuesN[k]);
             }
             total+= invkeyyValuesN[keyCounter] * textValuesN[k];
             keyCounter++;
           }//k
-          if(i < 2){
+          if(i < 1){
             println(total, total % 255);
           }
           total = total % 255;
