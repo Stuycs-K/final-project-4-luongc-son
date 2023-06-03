@@ -80,10 +80,11 @@ void encryptImg(){
     textValuesN[2] = int(blue(c));
     int colorValues[];
     colorValues = new int[3];
+    String RGBs = "RGB";
     for(int j = 0; j < state; ++j){
        for(int k = 0; k < state; ++k){
          if(i < 1){
-           println(textValuesN[k], keyyValuesN[keyCounter] * textValuesN[k]);
+           println(RGBs.charAt(k), ":", textValuesN[k], "Key:", keyyValuesN[keyCounter], keyyValuesN[keyCounter] * textValuesN[k]);
          }
         total += keyyValuesN[keyCounter] * textValuesN[k];
         keyCounter++;
@@ -98,6 +99,9 @@ void encryptImg(){
     }//j
     keyCounter = 0;
     color c2 = color(colorValues[0],colorValues[1],colorValues[2]);
+    if(i == 0){
+      println(red(c2),green(c2),blue(c2));
+    }
     img.pixels[i] = c2;
   } //pixels
   img.updatePixels();
@@ -121,8 +125,9 @@ int gcd(int x, int y){
 void finalize_key(int L, int state, int keyState, int m[][]){
   while (keyAccepted == false){
     genKey(L, keyState);
-    double DD = getDeterminant(m, state);
+    double DD = getDeterminant_r(m);
     int D = (int) DD;
+    println(D);
     if ((coprime(D, 26) == true) && (D > 0)){
       keyAccepted = true;
     }
@@ -149,7 +154,37 @@ void genKey(int L, int keyState){
     }
   }
 }
+int getDeterminant_r(int subm[][]){
+  if (subm.length == 1){
+    return subm[0][0];
+  }
+  int D = 0;
+  int sign = 1;
+  for (int i = 0; i < subm.length; i++){
+    int sub[][] = getSub(subm, 0, i);
+    int minor = getDeterminant_r(sub);
+    D += subm[0][i] * sign * minor;
+    sign *= -1;
+    //println(D);
+  }
+  return D;
+}
 
+int[][] getSub(int m[][], int R, int C){
+  int sub[][] = new int[m.length - 1][m.length - 1];
+  for (int i = 0, r = 0; i < m.length; i++){
+    if (i != R){
+      for (int j = 0, c = 0; j < m[i].length; j++){
+        if (j != C){
+          sub[r][c] = m[i][j];
+          c++;
+        }
+      }//j
+      r++;
+    }
+  }
+  return sub;
+}
 double getDeterminant(int m[][], int s){
   double D = 0;
   if (s == 1){

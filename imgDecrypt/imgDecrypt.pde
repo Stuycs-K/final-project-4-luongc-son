@@ -136,6 +136,7 @@ void keyAction(char c, int KT){
 void decryptImg(){
   println(img.width,img.height);
   img.loadPixels();
+  println(img.pixels.length);
   int state = 3;
   textValuesN = new int[3];
   totalValuesN = new int[3];
@@ -147,6 +148,11 @@ void decryptImg(){
       textValuesN[0] = int(red(c));
       textValuesN[1] = int(green(c));
       textValuesN[2] = int(blue(c));
+      if(i < 1){
+        for(int b = 0; b < 3; ++b){
+           println(textValuesN[b]); 
+        }
+      }
       int colorValues[];
       colorValues = new int[3];
       String RGBs = "RGB";
@@ -195,11 +201,21 @@ boolean makeInverseKeyMatrix(int m[][]){
   for (int i = 0; i < m[0].length; i++){
     for (int j = 0; j < m[0].length; j++){
       minorMatrix[i][j] = getMinorMatrix(m, i, j);
+      println("MINOR: ", m[i][j] * minorMatrix[i][j]);
     }
   }
   int coFact0rs[][] = getCoFact0rMatrix(minorMatrix);
+  for (int i = 0; i < m[0].length; i++){
+    for (int j = 0; j < m[0].length; j++){
+      println("COFACTORS: ", coFact0rs[i][j]);
+    }
+  }
   int adj[][] = transposeV2(coFact0rs);
-  
+  for (int i = 0; i < m[0].length; i++){
+    for (int j = 0; j < m[0].length; j++){
+      println("ADJ: ", adj[i][j]);
+    }
+  }
   int MID = multiplicative_inverse_of_determinant(m, m[0].length);
   println("MID: ", MID);
   for (int i = 0; i < m[0].length; i++){
@@ -212,7 +228,7 @@ boolean makeInverseKeyMatrix(int m[][]){
     }
   }
   int cf = 0;
-
+  println("INVERSE VALUES: ");
   for (int r = 0; r < invkeyyValuesNM[0].length; r++){
     for (int c = 0; c < invkeyyValuesNM[0].length; c++){
       invkeyyValuesN[cf] = invkeyyValuesNM[r][c];
@@ -326,6 +342,9 @@ int[][] transposeV2(int m[][]){
   for (int i = 0; i < m[0].length; i++){
     for (int ii = 0; ii < m[0].length; ii++){
       t[ii][i] = m[i][ii];
+    //  if(t[ii][i] < 0){
+    //    t[ii][i] += 26;
+    //  }
     }
   }
   return t;
@@ -362,7 +381,7 @@ int multiplicative_inverse_of_determinant(int m[][], int s){
     D += 26;
   }
   println("Determinant: ",D);
-  for (int z = 1; z <= 999999999; z++){
+  for (int z = 1; z <= 26; z++){
     //println(z);
     if (((D * z) % 26) == 1){
       return z;
