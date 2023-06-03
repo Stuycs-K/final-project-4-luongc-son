@@ -220,7 +220,7 @@ boolean makeInverseKeyMatrix(int m[][]){
   println("MID: ", MID);
   for (int i = 0; i < m[0].length; i++){
     for (int j = 0; j < m[0].length; j++){
-      int temp = (adj[i][j] * MID) % 26;
+      int temp = adj[i][j] % 26;
       if(temp < 0){
         temp += 26;
       }
@@ -313,29 +313,6 @@ void getCoFact0r(int m[][], int temp[][], int P, int Q, int N){
       }
     }
   }
-}
-
-int[][] adjoint(int m[][]){
-  int adj[][] = new int[m[0].length][m[0].length];
-  if (m[0].length == 1){
-    adj[0][0] = 1;
-    return adj;
-  }
-  int sign = 1;
-  int N = m[0].length;
-  int temp[][] = new int[N][N];
-  for (int i = 0; i < N; i++){
-    for (int j = 0; j < N; j++){
-      getCoFact0r(m, temp, i, j, N);
-      sign = ((i + j) % 2 == 0)? 1 : -1;
-      adj[j][i] = (sign * (determinant(temp, N - 1)));
-      while (adj[j][i] < 0){
-        adj[j][i] += 26;
-      }
-      adj[j][i] = adj[j][i] % 26;
-    }
-  }
-  return adj;
 }
 int[][] transposeV2(int m[][]){
   int t[][] = new int[m[0].length][m[0].length];
