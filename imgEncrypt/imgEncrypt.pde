@@ -108,7 +108,7 @@ void encryptImg(){
   image(img,0,0);
   println(keyy);
   //save("test.jpg");
-  img.save("encryptedImg.jpg");
+  img.save("../imgDecrypt/data/dog.jpg");
 }
 
 boolean coprime(int x, int y){
