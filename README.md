@@ -14,6 +14,7 @@
  - Further instructions will be printed by the program
    - It's advised that you utilize the encryption tool to produce the inputs for the decryption tool. Don't try to make up your own keys.
    - Notice: The decryption tool might say "This is not a valid character!" when you press Enter for the ciphertext. Don't fret; this is simply because the "enter" key for the next input (the key) is the "1" key rather than Enter, hence the Enter is not used and therefore "not valid".
+ - For the image encryption, like other processing programs, in order for the code to be able to access your image you need to have it in the "data" folder under imgEncrypt.
 
 ### Links
 - [Presentation](https://github.com/Stuycs-K/final-project-4-luongc-son/blob/main/PRESENTATION.md) 
