@@ -110,8 +110,12 @@ void encryptImg(){
   image(img,0,0);
   println(keyy);
   //save("test.jpg");
+<<<<<<< HEAD
   String save = "../imgDecrypt/data/" + image;
   img.save(save);
+=======
+  img.save("../imgDecrypt/data/dog.jpg");
+>>>>>>> c1e31200022f19ab9d5d3271489e427fbf9f6ed5
 }
 
 boolean coprime(int x, int y){
