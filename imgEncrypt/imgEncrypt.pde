@@ -8,6 +8,7 @@ int totalValuesN[];
 char keyyValuesL[];
 String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 String text = "";
+String image = "";
 boolean accepting = true; //determines if user input is being accepted
 boolean keyAccepted = false; //determines if key matrix is valid
 String answer = "";
@@ -30,6 +31,7 @@ void keyPressed(){
 void keyAction(char c){
   if (c == ENTER){
     accepting = false;
+    image = text;
     img = loadImage(text); //to stop program if file doesn't work
     image(img,0,0);
     encryptImg();
@@ -108,7 +110,8 @@ void encryptImg(){
   image(img,0,0);
   println(keyy);
   //save("test.jpg");
-  img.save("encryptedImg.jpg");
+  String save = "../imgDecrypt/data/" + image;
+  img.save(save);
 }
 
 boolean coprime(int x, int y){

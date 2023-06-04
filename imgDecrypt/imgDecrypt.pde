@@ -10,6 +10,7 @@ int invkeyyValuesNM[][];
 int invkeyyValuesN[];
 String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 String text = "";
+String image = "";
 boolean acceptingText = true; //determines if user input is being accepted
 boolean acceptingKey = false;
 boolean keyAccepted = false; //determines if key matrix is valid
@@ -40,6 +41,7 @@ void keyAction(char c, int KT){
     if (c == ENTER){
       acceptingText = false;
       acceptingKey = true;
+      image = text;
       img = loadImage(text); //to stop program if file doesn't work
       image(img,0,0);
       println("Now enter a nine letter long key and press \"1\" when done");
@@ -175,8 +177,10 @@ void decryptImg(){
         color c2 = color(colorValues[0],colorValues[1],colorValues[2]);
         img.pixels[i] = c2;
       }//pixels
+      String path = "../imgEncrypt/data/" + image;
+      PImage img2 = loadImage(path);
       img.updatePixels();
-      image(img,0,0);
+      image(img2,0,0);
    }
 }
 
