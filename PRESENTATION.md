@@ -13,7 +13,7 @@
  - Hill Cipher is digraphic in nature
    - capable of expanding to multiply any size of letters to add more complexity and reliability for better use
  - Advantages: is immune to letter frequency analysis
- - Vulnerabilities: brute force attacks, known plaintext attackw
+ - Vulnerabilities: brute force attacks, known plaintext attacks
    - Brute force attacks can be countered by having a long key and large block sizes
    - Plaintext attacks will only work if attacker has access to both plaintext and ciphertext
 
