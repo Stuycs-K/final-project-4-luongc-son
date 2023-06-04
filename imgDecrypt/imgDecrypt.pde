@@ -178,9 +178,9 @@ void decryptImg(){
         img.pixels[i] = c2;
       }//pixels
       String path = "../imgEncrypt/data/" + image;
-      PImage img2 = loadImage(path);
+      img = loadImage(path);
       img.updatePixels();
-      image(img2,0,0);
+      image(img,0,0);
    }
 }
 
